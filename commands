@@ -1,0 +1,5 @@
+#backend
+npm i express socket-io nodemon
+
+#frontend
+npm i simple-peer socket.io-client @material-ui/core @material-ui/icons s react-copy-to-clipboard
