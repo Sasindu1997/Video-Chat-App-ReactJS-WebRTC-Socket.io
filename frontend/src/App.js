@@ -44,27 +44,26 @@ function App() {
       setCallerSignal(data.signal)
     })
 
-    
   }, [])
 
   const callUser = (id) => {
 
     const peer = new Peer({
       initiator: true, 
-      trickle: false, 
+      trickle: false,
       stream: stream
     })
 
     peer.on("signal", (data) => {
       socket.emit("callUser", {
         userToCall: id, 
-        signal: data,
+        signalData: data,
         from: me,
-        name: name
+        name: name 
       })
     })
 
-    peer.on("stream", (data) => {
+    peer.on("stream", (stream) => {
       userVideo.current.srcObject = stream
     })
 
@@ -110,14 +109,14 @@ function App() {
       <div className="container">
         <div className="video-container">
           <div className="video">
-            {stream && <video playsInline muted ref={myVideo} autoPlay style={{ width: "380px"}} />}
+            {stream && <video playsInline muted ref={myVideo} autoPlay style={{ width: "700px"}} />}
           </div>
           <div container="video">
             {callAccepted && !callEnded ? 
-            <video playsInline ref={userVideo} autoPlay style={{ width: "300px"}} /> : null }
+            <video playsInline ref={userVideo} autoPlay style={{ width: "700px"}} /> : null }
           </div>
         </div>
-        <div className="myId">
+        <div className="mygrid">
           <TextField
             id="filled-basic"
             label="Name"
