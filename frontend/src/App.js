@@ -14,13 +14,13 @@ const socket = io.connect("http://localhost:5000")
 function App() {
   
   const [ me, setMe] = useState("")
-  const [ stream, setStream] = useState("")
-  const [ receivingCall, setReceivingCall ] = useState("")
+  const [ stream, setStream] = useState()
+  const [ receivingCall, setReceivingCall ] = useState(false)
   const [ caller, setCaller ] = useState("")
-  const [ callerSignal, setCallerSignal ] = useState("")
-  const [ callAccepted, setCallAccepted ] = useState("")
+  const [ callerSignal, setCallerSignal ] = useState()
+  const [ callAccepted, setCallAccepted ] = useState(false)
   const [ idToCall, setIdToCall ] = useState("")
-  const [ callEnded, setCallEnded ] = useState("")
+  const [ callEnded, setCallEnded ] = useState(false)
   const [ name, setName ] = useState("")
 
   const myVideo = useRef()
@@ -152,7 +152,7 @@ function App() {
         </div>
         {receivingCall && !callAccepted ? (
           <div className="caller">
-            <h1>{name} is calling...</h1>
+            <h1>{caller} is calling...</h1>
             <Button varient="contained" color="primary" onClick={answerCall}>
               Answer
             </Button>
